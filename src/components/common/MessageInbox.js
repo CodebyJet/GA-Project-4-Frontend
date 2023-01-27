@@ -63,7 +63,6 @@ export default function MessagingPage({ selectedUser }) {
       (i.owner === selectedUser && i.receiver === UserID) ||
       (i.owner === UserID && i.receiver === selectedUser)
   );
-console.log(selectedUser)
   return (
     <Container maxWidth='lg'>
       {messagesFromSelectedUser?.map((message) => (
