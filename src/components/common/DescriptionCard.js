@@ -29,7 +29,7 @@ export default function DescriptionCard({singleUser}) {
     API.GET(API.ENDPOINTS.allDescriptions, API.getHeaders())
       .then(({ data }) => {
         const filterDescriptions = data.filter(
-          (item) => item.owner === singleUser.id
+          (item) => item.owner === singleUser?.id
         );
         const oneQuiz = filterDescriptions[0];
         setSingleDescription(oneQuiz);
