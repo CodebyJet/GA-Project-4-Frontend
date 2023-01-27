@@ -2,16 +2,16 @@ import axios from 'axios';
 import { AUTH } from './auth';
 
 const ENDPOINTS = {
-  allQuizes: `${REACT_APP_BASE_URL}/api/quiz/`,
-  singleQuiz: (id) => `${REACT_APP_BASE_URL}/api/quiz/${id}`,
-  allMessages: `${REACT_APP_BASE_URL}/api/mail/`,
-  singleMessage: (id) => `${REACT_APP_BASE_URL}/api/mail/${id}`,
-  allUsers: `${REACT_APP_BASE_URL}/api/auth/user/`,
-  singleUser: (id) => `${REACT_APP_BASE_URL}/api/auth/user/${id}`,
-  allDescriptions: `${REACT_APP_BASE_URL}/api/description/`,
-  singleDescription: (id) => `${REACT_APP_BASE_URL}/api/description/${id}`,
-  login: `${REACT_APP_BASE_URL}/api/auth/login/`,
-  register: `${REACT_APP_BASE_URL}/api/auth/register/`,
+  allQuizes: `${process.env.REACT_APP_BASE_URL}/api/quiz/`,
+  singleQuiz: (id) => `${process.env.REACT_APP_BASE_URL}/api/quiz/${id}`,
+  allMessages: `${process.env.REACT_APP_BASE_URL}/api/mail/`,
+  singleMessage: (id) => `${process.env.REACT_APP_BASE_URL}/api/mail/${id}`,
+  allUsers: `${process.env.REACT_APP_BASE_URL}/api/auth/user/`,
+  singleUser: (id) => `${process.env.REACT_APP_BASE_URL}/api/auth/user/${id}`,
+  allDescriptions: `${process.env.REACT_APP_BASE_URL}/api/description/`,
+  singleDescription: (id) => `${process.env.REACT_APP_BASE_URL}/api/description/${id}`,
+  login: `${process.env.REACT_APP_BASE_URL}/api/auth/login/`,
+  register: `${process.env.REACT_APP_BASE_URL}/api/auth/register/`,
   cloudinary: `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`
 };
 
