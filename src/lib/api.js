@@ -2,16 +2,16 @@ import axios from 'axios';
 import { AUTH } from './auth';
 
 const ENDPOINTS = {
-  allQuizes: '/api/quiz/',
-  singleQuiz: (id) => `/api/quiz/${id}`,
-  allMessages: '/api/mail/',
-  singleMessage:(id) => `/api/mail/${id}`,
-  allUsers : '/api/auth/user/',
-  singleUser: (id) => `/api/auth/user/${id}`,
-  allDescriptions: '/api/description/',
-  singleDescription: (id)=> `api/description/${id}`,
-  login: 'api/auth/login/',
-  register: 'api/auth/register/',
+  allQuizes: `${REACT_APP_BASE_URL}/api/quiz/`,
+  singleQuiz: (id) => `${REACT_APP_BASE_URL}/api/quiz/${id}`,
+  allMessages: `${REACT_APP_BASE_URL}/api/mail/`,
+  singleMessage: (id) => `${REACT_APP_BASE_URL}/api/mail/${id}`,
+  allUsers: `${REACT_APP_BASE_URL}/api/auth/user/`,
+  singleUser: (id) => `${REACT_APP_BASE_URL}/api/auth/user/${id}`,
+  allDescriptions: `${REACT_APP_BASE_URL}/api/description/`,
+  singleDescription: (id) => `${REACT_APP_BASE_URL}/api/description/${id}`,
+  login: `${REACT_APP_BASE_URL}/api/auth/login/`,
+  register: `${REACT_APP_BASE_URL}/api/auth/register/`,
   cloudinary: `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`
 };
 
