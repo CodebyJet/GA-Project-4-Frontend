@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+## Love Bug!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This project was assigned at the end of the eleventh week of General Assembly’s 3-month SEI (Software Engineering Immersive) course, in which I am studying the fundamentals of software engineering with the aim to launch a career in this sector. The aim of the project was to show our ability at making an independent full stack app.
 
-In the project directory, you can run:
+-----
 
-### `npm start`
+## Deployment link:
+https://codebyjetmsg.netlify.app/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used: 
+To complete this project I used:
+ - Python | Django for the back-end
+ - JavaScript and React for the front.
+ - using MUI for styling
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Brief: 
+With this project, we were given the brief to build a full stack app in a week, working solo. The functionality of the app was up to us, but it had to demonstrate at least 2 relationship key pairings - With that in mind, and as a play on relationships as a whole, I chose to make a mock dating website - Where users could register, get paired with other users, and message freely between themselves.
 
-### `npm test`
+------
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Planning:
+The first day of the project, I spent planning it out, with a rough idea of what I wanted the end result to look like, what functions I thought I would need and how I may implement them. I used excalidraw to plan the wireframe of my game
 
-### `npm run build`
+<img src="readme_extras\first-sketch.jpg" >
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Stage 1: The Backend
+First I made the user model - This would ask the user for the usual stuff on signing up for the site:
+- first and lase name
+- a picture
+- a username to display
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`class User(AbstractUser):
+    email = models.CharField(max_length=50, unique=True)
+    username = models.CharField(max_length=30, unique=True)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    profile_image = models.CharField(max_length=300)
+`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Stage 2: The foreign key.
+Now that the user model has been made, I could make the models for everything else - including the foreign key pairs that needed the user model
 
-### `npm run eject`
+<img src="readme_extras\Mapping-of-FK's.jpg" >
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+originally the Mail model was called messages - but Django had internally built functionality called messages already, so I opt'd for mail - You've got Mail.
+Also I thought I would need some sort of inbox model to store them in - this was later removed.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Stage 3: Testing:
+on Postman I tested out if a user could send messages to another user, upload a description about them selves, and store the quiz data. For now, I mostly returned quiz data that didn't mean anything, as I hadn't finalized the questions to ask fully
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<img src="readme_extras\quizpostman.jpg" >
+<img src="readme_extras\postmanmail.jpg" >
 
-## Learn More
+## Stage 4: The start of the front
+With the majority of the backend implemented. I began to work on the frontend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The first thing I worked on, was the ability to sign in and out, and for the Navbar to change depending if you were logged in or not.
+After this was set up, I created a way of sending off the quiz data - I chose to do drop-down boxes, as a multiple choice answer to the questions. It would overall be easier to match people, if there was a limited and unionized form of answering.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="readme_extras\question_one.jpg" >
 
-### Code Splitting
+I didn't want a long list of questions, as that looks intimidating and puts the user off
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<img src="readme_extras\question_two.jpg" >
 
-### Analyzing the Bundle Size
+With the questions set and the API calls working...
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## stage 5:
+The description was much of the same. Except easier, as I didn't have to think of cliche questions to ask (;
 
-### Making a Progressive Web App
+## stage 6:
+The user page - Now I have data to display, I need somewhere to display it. This was just a straight forward API call, feeding in the user's ID to get the quiz and description data with that user - As the user is only able to send off one quiz and description.
+`
+<DescriptionCard singleUser={singleUser} />
+`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Stage 7:
+The messaging. This for me was the hardest part - getting all the messages, filtering for the ones where you are the owner of the message or the reciever:
+Then splitting it by person, so I could make a list of users you have messaged - Click on them, and display the messages from you and them to each other.
+For a while I had it so if you clicked a user, you would get all of your messages to everyone, and their messages to you.
 
-### Advanced Configuration
+<img src="readme_extras\api_calls.jpg" >
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+But I managed to get it working in the end 
 
-### Deployment
+<img src="readme_extras\messaging_gif.gif" >
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+## stage 8:
+How users are matched.
+Using the object keys with a filter method, I was able to match up if two points on different quizes was the same, adding the amount of correct answers to an array, sorting it from highest to lowest, and returning the first of the array
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="readme_extras\match_code.jpg" >
+
+Then making a button on your user page, to match with a user:
+This only appears if you own the page, and not if you are seeing another users page
+
+<img src="readme_extras\matching_btn.jpg" >
+
+## Stage 9: How the user pages changes. 
+With the user page returning the quiz data and descriptions working, I wanted the User pages to appear different, if it wasn't your page
+
+<img src="readme_extras\if-not-current-user.jpg" >
+
+From small things like a button to message the user directly
+
+<img src="readme_extras\not_your_page.jpg" >
+
+Or saying that the user hadn't yet done the quiz or the 'About Me' section
+
+<img src="readme_extras\no_data.jpg" >
+
+I did try to implement a gender and preference, but at the eleventh hour, I could not get it to work the way I wanted, so it was removed.
+It's 2023, if you get paired with a man, maybe this is lifes way of telling you something (;
+
+
+## Future Improvements: 
+I'd like to go back and restyle some elements I think need more care. (Also I'd like to have the ability to match based off gender and preferences)
+One big feature I'd like to add, would be a Tinder-esque carrousel, where the users are displayed and you can 'Like' them - I do have a carrousel in the About Us page, but I was unable to get it to return a little bit about the user and that click to navigate to them feel
